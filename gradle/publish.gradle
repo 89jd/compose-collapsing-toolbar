@@ -7,6 +7,8 @@ ext['signing.secretKeyRingFile'] = ''
 ext['ossrhUsername'] = ''
 ext['ossrhPassword'] = ''
 
+var doSigning = false
+
 var properties = new Properties()
 var file = project.rootProject.file('publish.properties')
 if(file.exists()) {
@@ -15,6 +17,8 @@ if(file.exists()) {
 	ext['signing.keyId'] = properties.getProperty('signing.keyId')
 	ext['signing.password'] = properties.getProperty('signing.password')
 	ext['signing.secretKeyRingFile'] = properties.getProperty('signing.secretKeyRingFile')
+
+	doSigning = true
 
 	ext.ossrhUsername = properties.getProperty('ossrhUsername')
 	ext.ossrhPassword = properties.getProperty('ossrhPassword')
@@ -88,6 +92,8 @@ artifacts {
 	archives androidSourceSets
 }
 
-signing {
-	sign publishing.publications
+if (doSigning) {
+	signing {
+		sign publishing.publications
+	}
 }
