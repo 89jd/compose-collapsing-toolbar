@@ -22,15 +22,11 @@
 
 package me.onebone.toolbar
 
-@RequiresOptIn(
-	message = "This is an experimental API of compose-collapsing-toolbar. Any declarations with " +
-			"the annotation might be removed or changed in some way without any notice.",
-	level = RequiresOptIn.Level.WARNING
+import androidx.compose.runtime.Immutable
+
+@Immutable
+class FabPlacement(
+	val left: Int,
+	val width: Int,
+	val height: Int
 )
-@Target(
-	AnnotationTarget.FUNCTION,
-	AnnotationTarget.PROPERTY,
-	AnnotationTarget.CLASS
-)
-@Retention(AnnotationRetention.BINARY)
-annotation class ExperimentalToolbarApi
